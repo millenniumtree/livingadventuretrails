@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "livingadventuretrails",
+	"version": "${version}",
+	"name": "Living Adventure: Trails",
+	"description": "",
+	"authors": [
+		"MillenniumTree"
+	],
+	"contact": {
+	},
+	"license": "All-Rights-Reserved",
+	"icon": "assets/livingadventuretrails/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "com.millenniumtree.livingadventuretrails.LivingAdventureTrails"
+		],
+		"client": [
+		]
+	},
+	"mixins": [
+		"livingadventuretrails.mixins.json"
+	],
+	"depends": {
+		"fabricloader": "${loader_version}",
+		"minecraft": "${minecraft_version}",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+	}
+}
