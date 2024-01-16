@@ -37,6 +37,11 @@ public class PlayerMoved {
       String worldID = serverWorld.getRegistryKey().getValue().toString();
       String blockID = Registries.BLOCK.getId(touchedBlock).toString();
 
+      if(blockID.equals("minecraft:air")) return;
+      if(blockID.equals("minecraft:water")) return;
+
+      LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: onMove " + blockID);
+
       if(LATConfig.fragileRules.ifTrigger(worldID, blockID, "step", LivingAdventureTrails.getEntityTransitionBoost(player))) {
         TransitionRule transitionRule = LATConfig.fragileRules.getRandomTransitionRule(worldID, blockID, "step");
 

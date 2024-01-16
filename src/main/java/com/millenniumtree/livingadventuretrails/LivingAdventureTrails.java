@@ -214,7 +214,7 @@ public class LivingAdventureTrails implements ModInitializer {
 			"# The following are fragile transparent blocks that may be broken if walked through without sneaking.\n" +
 			"# Break frequency is much higher than autotrails, and they drop appropriate loot when broken (as if broken without a tool)\n" +
 			"fragile,overworld,snow = (air,1500)\n" +
-			"fragile,overworld,grass = (air,1500,loot)\n" +
+			"fragile,overworld,short_grass = (air,1500,loot)\n" +
 			"fragile,overworld,tall_grass = (air,1500,loot)\n" +
 			"fragile,overworld,poppy = (air,1500,loot)\n" +
 			"fragile,overworld,dandelion = (air,600,loot)\n" +
