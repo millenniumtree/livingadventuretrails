@@ -9,7 +9,7 @@
 	],
 	"contact": {
 	},
-	"license": "All-Rights-Reserved",
+	"license": "GNU GENERAL PUBLIC LICENSE Version 3",
 	"icon": "assets/livingadventuretrails/icon.png",
 	"environment": "*",
 	"entrypoints": {
