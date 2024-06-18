@@ -3,14 +3,14 @@
 	"id": "livingadventuretrails",
 	"version": "${version}",
 	"name": "Living Adventure: Trails",
-	"description": "",
+	"description": "A mod that gradually creates paths by converting blocks that are stepped on to other blocks",
 	"authors": [
 		"MillenniumTree"
 	],
 	"contact": {
 	},
 	"license": "GNU GENERAL PUBLIC LICENSE Version 3",
-	"icon": "assets/livingadventuretrails/icon.png",
+	"icon": "assets/living-adventure-trails/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
