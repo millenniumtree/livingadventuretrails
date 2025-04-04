@@ -44,7 +44,7 @@ public class BlockSteppedOn {
 					pos.getY() < transitionRule.belowY
 					&& pos.getY() > transitionRule.aboveY
 				) {
-					Block nextBlock = Registries.BLOCK.get(new Identifier(transitionRule.blockID));
+					Block nextBlock = Registries.BLOCK.get(Identifier.tryParse(transitionRule.blockID));
 
 					if (transitionRule.loot) {
 						world.breakBlock(pos, transitionRule.loot);
@@ -77,7 +77,7 @@ public class BlockSteppedOn {
 
 			if(LATConfig.autoTrailRules.ifTrigger(worldID, blockID, "step", LivingAdventureTrails.getEntityTransitionBoost(entity))) {
 				TransitionRule transitionRule = LATConfig.autoTrailRules.getRandomTransitionRule(worldID, blockID, "step");
-				Block nextBlock = Registries.BLOCK.get(new Identifier(transitionRule.blockID));
+				Block nextBlock = Registries.BLOCK.get(Identifier.tryParse(transitionRule.blockID));
 
 				if(transitionRule.loot) {
 					world.breakBlock(pos, transitionRule.loot);

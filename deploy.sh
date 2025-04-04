@@ -2,5 +2,5 @@
 
 gradle build
 
-rm -f ~/.minecraft-1.20/mods/livingadventuretrails*
-yes | cp build/libs/livingadventuretrails-1.20.4.4.jar ~/.minecraft-1.20/mods/
+rm -f ~/.minecraft-1.21/mods/livingadventuretrails*
+yes | cp build/libs/livingadventuretrails-1.21.1.1.jar ~/.minecraft-1.21/mods/

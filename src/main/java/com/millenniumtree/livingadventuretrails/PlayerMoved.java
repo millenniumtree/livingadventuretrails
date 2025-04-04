@@ -40,12 +40,12 @@ public class PlayerMoved {
       if(blockID.equals("minecraft:air")) return;
       if(blockID.equals("minecraft:water")) return;
 
-      LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: onMove " + blockID);
+//      LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: onMove " + blockID);
 
       if(LATConfig.fragileRules.ifTrigger(worldID, blockID, "step", LivingAdventureTrails.getEntityTransitionBoost(player))) {
         TransitionRule transitionRule = LATConfig.fragileRules.getRandomTransitionRule(worldID, blockID, "step");
 
-        Block nextBlock = Registries.BLOCK.get(new Identifier(transitionRule.blockID));
+        Block nextBlock = Registries.BLOCK.get(Identifier.tryParse(transitionRule.blockID));
 
         // Player trampled a fragile block - break it as if with the empty hand, and drop the loot, if necessary
         serverWorld.breakBlock(playerPos, transitionRule.loot);

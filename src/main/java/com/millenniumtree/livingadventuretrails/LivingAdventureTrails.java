@@ -20,10 +20,30 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Random;
 
+/*
+	IDEAS:
+  Passing through leaves with a horse and a hoe in hand will break the leaves
+
+	Command to increase dramatically the conversion rate for laying paths between villages.
+	Fires when you get 8 blocks away from your last location.
+	Attempts to flatten a bit, the natural ground between the two places
+		- Bringing some blocks up or down
+		- Make at least 4 conversions
+		- Maybe place some stairs if going up or down significantly between the two spots
+
+	Flattening and widening of the trail:
+	track direction of travel
+	pick a block 0-3 blocks perpendicular to that direction
+	if air, and block BELOW that block is dirt, bring it up
+	if block is solid, and block ABOVE that block air, bring the surface down
+
+	Break leaf blocks automatically, especially if you pass through them on a horse.
+
+
+
+ */
+
 public class LivingAdventureTrails implements ModInitializer {
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger("livingadventuretrails");
 
 	public static final String MOD_ID = "livingadventuretrails";
@@ -151,7 +171,7 @@ public class LivingAdventureTrails implements ModInitializer {
 			"autotrail,overworld,coarse_dirt = (rooted_dirt,75; dirt,25; mud,15; packed_mud,5)\n" +
 			"autotrail,overworld,rooted_dirt = (coarse_dirt,75; dirt,25; mud,5; packed_mud,10)\n" +
 			"autotrail,overworld,packed_mud = (mud,50; smooth_basalt,25; rooted_dirt,25; podzol,10)\n" +
-			"autotrail,overworld,mud = (smooth_basalt,50; packed_mud,10)\n" +
+			"autotrail,overworld,mud = (smooth_basalt,50,below 50; packed_mud,10,below 50)\n" +
 			"autotrail,overworld,smooth_basalt = (mud,50; cobbled_deepslate,25,below 0)\n" +
 			"\n" +
 			"autotrail,overworld,sand = (smooth_sandstone,50, gravel,20, red_sand,10)\n" +

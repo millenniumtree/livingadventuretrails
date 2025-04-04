@@ -28,7 +28,7 @@ public class RuleSetBase {
 
     // This block ID changed in Minecraft 1.20.3
     if(blockID.equals("minecraft:grass")) {
-      LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - blockID: minecraft:grass has been replaced with minecraft:short_grass. Please update your config file!");
+//      LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - blockID: minecraft:grass has been replaced with minecraft:short_grass. Please update your config file!");
       blockID = "minecraft:short_grass";
     }
 
