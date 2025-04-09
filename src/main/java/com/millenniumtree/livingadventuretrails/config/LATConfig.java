@@ -194,8 +194,8 @@ public class LATConfig {
   }
   public static boolean isPaused(ServerPlayerEntity player) {
     if(paused) return true;
-    if(
-      pausedSelf.getOrDefault(player.getId(), false)) return true;
+    if(player == null) return true;
+    if(pausedSelf.getOrDefault(player.getId(), false)) return true;
     return false;
   }
 

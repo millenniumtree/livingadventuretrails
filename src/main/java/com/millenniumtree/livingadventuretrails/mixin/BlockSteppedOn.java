@@ -41,6 +41,7 @@ public class BlockSteppedOn {
     } else {
       return;
     }
+    if(player == null) return;
     if(LATConfig.isPaused(player)) return;
     if(blockAbovePreventsTransition(world, pos)) return;
 
