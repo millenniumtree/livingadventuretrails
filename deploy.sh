@@ -1,6 +1,11 @@
 #!/bin/bash
 
+mod="livingadventuretrails"
+modversion=$(grep mod_version gradle.properties |cut -d'=' -f2)
+mcversion=$(grep mod_version gradle.properties |cut -d'=' -f2 |cut -d'.' -f1-3)
+echo "Deploying mod $mod version $modversion to folder .minecraft-$mcversion"
+
 gradle build
 
-rm -f ~/.minecraft-1.21/mods/livingadventuretrails*
-yes | cp build/libs/livingadventuretrails-1.21.1.1.jar ~/.minecraft-1.21/mods/
+rm -f ~/.minecraft-$mcversion/mods/$mod*
+yes | cp build/libs/$mod-$modversion.jar ~/.minecraft-$mcversion/mods/

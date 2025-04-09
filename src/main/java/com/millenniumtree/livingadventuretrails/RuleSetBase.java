@@ -27,9 +27,13 @@ public class RuleSetBase {
     }
 
     // This block ID changed in Minecraft 1.20.3
-    if(blockID.equals("minecraft:grass")) {
-//      LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - blockID: minecraft:grass has been replaced with minecraft:short_grass. Please update your config file!");
+    if(blockID.equals("minecraft:grass") && LivingAdventureTrails.verAtLeast("1.20.3")) {
+      // LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - blockID: minecraft:grass has been replaced with minecraft:short_grass. Please update your config file!");
       blockID = "minecraft:short_grass";
+    }
+    if(blockID.equals("minecraft:short_grass") && !LivingAdventureTrails.verAtLeast("1.20.3")) {
+      // LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - blockID: minecraft:grass has been replaced with minecraft:short_grass. Please update your config file!");
+      blockID = "minecraft:grass";
     }
 
     TransitionRule[] possibleTransitions;
@@ -40,7 +44,7 @@ public class RuleSetBase {
     int belowY;
     boolean loot;
 
-//    LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - worldID: "+worldID+", blockID: "+blockID+", configValue: "+configValue);
+    // LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - worldID: "+worldID+", blockID: "+blockID+", configValue: "+configValue);
     String[] possibleTransitionsConfig = configValue.split(";");
 
     possibleTransitions = new TransitionRule[possibleTransitionsConfig.length];
@@ -60,10 +64,10 @@ public class RuleSetBase {
         String transitionOption = transitionOptionsConfig[transitionOptionKey].trim();
         if(transitionOptionKey == 0) {
           transitionBlockID = transitionOption;
-//          LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - transitionBlockID: "+transitionBlockID);
+          // LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - transitionBlockID: "+transitionBlockID);
         } else if(transitionOptionKey == 1) {
           transitionFrequency = Integer.parseInt(transitionOption);
-//          LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - transitionFrequency: "+transitionFrequency);
+          // LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.addRuleFromConfig - transitionFrequency: "+transitionFrequency);
         } else {
           if(transitionOption.equals("loot")) {
             loot = true;
@@ -120,13 +124,13 @@ public class RuleSetBase {
   public int getTransitionFrequency(String worldID, String blockID) {
     String ruleKey = worldID+";"+blockID;
     int transitionFrequencyTotal = 0;
-//    LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.ifTrigger - ruleKey: " + ruleKey);
+    // LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.ifTrigger - ruleKey: " + ruleKey);
 
 //    for ( String key : transitions.keySet() ) {
 //      LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.ifTrigger - key: " + key);
 //    }
 
-//    LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.ifTrigger - transitions.keys().toString(): " + transitions.keySet().toString());
+    // LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.ifTrigger - transitions.keys().toString(): " + transitions.keySet().toString());
 
     if(transitions.containsKey(ruleKey)) {
       TransitionRule[] transitionRules = transitions.get(ruleKey);
@@ -134,7 +138,7 @@ public class RuleSetBase {
       for (TransitionRule transitionRule : transitionRules) {
               transitionFrequencyTotal += transitionRule.frequency;
       }
-//      LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.ifTrigger - transitionFrequencyTotal: " + transitionFrequencyTotal);
+      // LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.ifTrigger - transitionFrequencyTotal: " + transitionFrequencyTotal);
       // LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: RuleSetBase.getTriggerMax - triggerMax: " + triggerMax[0]);
     }
     return transitionFrequencyTotal;

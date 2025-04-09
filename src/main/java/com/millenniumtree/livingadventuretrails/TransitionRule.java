@@ -1,5 +1,9 @@
 package com.millenniumtree.livingadventuretrails;
 
+import net.minecraft.util.math.Direction;
+
+import java.util.Random;
+
 public class TransitionRule {
   public String worldID;
   public String blockID;
@@ -21,5 +25,8 @@ public class TransitionRule {
 //    LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: TransitionRule created: "+worldID+", "+blockID+", "+frequency+", "+aboveY+", "+belowY+", "+randomOrientation+", "+loot);
   }
 
-
+  public Direction.Axis getRandomOrientation() {
+    Direction.Axis[] axes = Direction.Axis.values(); // X, Y, Z
+    return axes[new Random().nextInt(axes.length)];
+  }
 }

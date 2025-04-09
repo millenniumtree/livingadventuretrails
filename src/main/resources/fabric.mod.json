@@ -10,7 +10,7 @@
 	"contact": {
 	},
 	"license": "GNU GENERAL PUBLIC LICENSE Version 3",
-	"icon": "assets/living-adventure-trails/icon.png",
+	"icon": "assets/livingadventuretrails/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -25,7 +25,7 @@
 	"depends": {
 		"fabricloader": ">=${loader_version}",
 		"minecraft": "${minecraft_version}",
-		"java": ">=21",
+		"java": ">=${java_version}",
 		"fabric-api": "*"
 	},
 	"suggests": {

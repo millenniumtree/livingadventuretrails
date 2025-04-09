@@ -14,20 +14,20 @@ public class AutoTrailRuleSet extends RuleSetBase {
     return TRIGGER_MAX;
   }
 
-  public boolean ifTrigger(String worldID, String blockID, String type, Integer boost) {
+  public boolean ifTrigger(String worldID, String blockID, String type, boolean hasTool) {
     double random = 0;
     double transitionFrequency = 0;
-    double divisor = LivingAdventureTrails.getDivisor(type);
+    double divisor = LivingAdventureTrails.getDivisor(type, hasTool);
+    if(divisor == 0) return false;
+
+//    LivingAdventureTrails.LOGGER.info("LivingAdventureTrails: autotrail ifTrigger, steptype: "+type+" divisor: "+divisor);
     double triggerMax = getTriggerMax();
-    // Try boost number of times
-    for(int i = 0; i < boost; i++) {
-      random = LivingAdventureTrails.getRandomBounded(divisor);
-      if (random < triggerMax) {
-        // this is comparatively expensive, so we do it after first checking triggerMax
-        if(transitionFrequency == 0) transitionFrequency = getTransitionFrequency(worldID, blockID);
-        if(random < transitionFrequency) {
-          return true;
-        }
+    random = LivingAdventureTrails.getRandomBounded(divisor);
+    if (random < triggerMax) {
+      // this is comparatively expensive, so we do it after first checking triggerMax
+      if(transitionFrequency == 0) transitionFrequency = getTransitionFrequency(worldID, blockID);
+      if(random < transitionFrequency) {
+        return true;
       }
     }
     return false;
