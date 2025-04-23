@@ -78,11 +78,18 @@ public class LivingAdventureTrails implements ModInitializer {
     }
     if(playerEntity == null) return false;
 
-    for (ItemStack itemStack : playerEntity.getHandItems()) {
-      for(int n = 0; n < LATConfig.TOOL_ITEMS.length; n++) {
-        if(itemStack.getItem() == LATConfig.TOOL_ITEMS[n]) return true;
-      }
+    // ALL VERSIONS 1.21.4 AND BELOW
+    // for (ItemStack itemStack : playerEntity.getHandItems()) {
+    //   for(int n = 0; n < LATConfig.TOOL_ITEMS.length; n++) {
+    //     if(itemStack.getItem() == LATConfig.TOOL_ITEMS[n]) return true;
+    //   }
+    // }
+    // VERSIONS 1.21.5 AND ABOVE
+    for(int n = 0; n < LATConfig.TOOL_ITEMS.length; n++) {
+      if(playerEntity.getMainHandStack().getItem() == LATConfig.TOOL_ITEMS[n]) return true;
+      if(playerEntity.getOffHandStack().getItem() == LATConfig.TOOL_ITEMS[n]) return true;
     }
+
     return false;
   }
 
@@ -104,11 +111,18 @@ public class LivingAdventureTrails implements ModInitializer {
     }
     if(playerEntity == null) return false;
 
-    for (ItemStack itemStack : playerEntity.getHandItems()) {
-      for(int n = 0; n < LATConfig.LEAF_TOOL_ITEMS.length; n++) {
-        if(itemStack.getItem() == LATConfig.LEAF_TOOL_ITEMS[n]) return true;
-      }
+    // ALL VERSIONS 1.21.4 AND BELOW
+    // for (ItemStack itemStack : playerEntity.getHandItems()) {
+    //   for(int n = 0; n < LATConfig.LEAF_TOOL_ITEMS.length; n++) {
+    //     if(itemStack.getItem() == LATConfig.LEAF_TOOL_ITEMS[n]) return true;
+    //   }
+    // }
+    // VERSIONS 1.21.5 AND ABOVE
+    for(int n = 0; n < LATConfig.LEAF_TOOL_ITEMS.length; n++) {
+      if(playerEntity.getMainHandStack().getItem() == LATConfig.LEAF_TOOL_ITEMS[n]) return true;
+      if(playerEntity.getOffHandStack().getItem() == LATConfig.LEAF_TOOL_ITEMS[n]) return true;
     }
+
     return false;
   }
 
