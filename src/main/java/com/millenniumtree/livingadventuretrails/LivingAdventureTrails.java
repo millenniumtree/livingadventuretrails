@@ -11,6 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.SkeletonHorseEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.item.ItemStack;
@@ -242,24 +243,32 @@ public class LivingAdventureTrails implements ModInitializer {
 
   public static boolean entityCanAutoTrail(Entity entity) {
     if(
-      (
-        entity instanceof ServerPlayerEntity
-        && !((ServerPlayerEntity)entity).isCreative()
-        && !((ServerPlayerEntity)entity).isSpectator()
-      )
-      || (
-        (
-          entity instanceof HorseEntity
-          || entity instanceof PigEntity
-          || entity instanceof SkeletonHorseEntity
-          || entity instanceof DonkeyEntity
-          || entity instanceof MuleEntity
-          || entity instanceof StriderEntity
-          || entity instanceof CamelEntity
-        )
-        && entity.hasPlayerRider()
-      )
+      entity instanceof ServerPlayerEntity
+      && !((ServerPlayerEntity)entity).isCreative()
+      && !((ServerPlayerEntity)entity).isSpectator()
     ) return true;
+
+    if (
+      (
+        entity instanceof HorseEntity
+        || entity instanceof PigEntity
+        || entity instanceof SkeletonHorseEntity
+        || entity instanceof DonkeyEntity
+        || entity instanceof MuleEntity
+        || entity instanceof StriderEntity
+        || entity instanceof CamelEntity
+      )
+      && entity.hasPlayerRider()
+    ) {
+      LivingEntity playerEntity = entity.getControllingPassenger();
+      if(
+        playerEntity instanceof ServerPlayerEntity
+        && !((ServerPlayerEntity)playerEntity).isCreative()
+        && !((ServerPlayerEntity)playerEntity).isSpectator()
+      ) {
+        return true;
+      }
+    }
     return false;
   }
 
