@@ -8,12 +8,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityStepHeight {
-//  @Inject(at = { @At("TAIL") }, method = "getStepHeight()F", cancellable = true)
+//  @Inject(at = { @At("HEAD") }, method = "Lnet/minecraft/entity/Entity;getStepHeight()F", cancellable = true)
 //  public void getStepHeight(CallbackInfoReturnable<Float> cir) {
 //    if(
 //      this.getClass().getSimpleName() == "HorseEntity"
 //    ) {
 //      cir.setReturnValue(1.125F);
+//      cir.cancel();
 //    }
 //  }
 }

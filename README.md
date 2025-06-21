@@ -14,8 +14,10 @@ Features
 - Trails will take longer to generate on harder materials
 - Trail building can be different above or below certain Y coordinates (configurable)
 - "Fragile" blocks such as tall grass, crops, flowers, mushrooms, snow layers, etc, have a chance of breaking when stepped on.
-- Carrying a wooden shovel in either hand increases the trail-making 5-fold, for quickly connecting remote villages and other points of interest.
-- No blocks are changed while sneaking
+- Carrying a wooden/iron shovel in either hand increases the trail-making, for quickly connecting remote villages and other points of interest.
+- No blocks are changed while sneaking, in creative, or if turned off
+- Can be turned on/off per player or globally with commands.
+- New feature: Riding a horse while holding a diamond or netherite hoe (configurable) can break leaf blocks in front of you, allowing very quick path building through forests!
 
 **Please feel free to send me a tip, or buy me a coffee, with the donate button above.**
 
@@ -37,47 +39,34 @@ Questions & Answers
 #### How are different gamemodes handled?
 No trails are generated in creative or spectator mode, only in survival
 
-#### What if I don't like the path block?
-The default configuration does use the dirt_path block, but feel free to switch to the lines included in the file that do NOT use it.
-
-#### What commands are available?
-For non-admin users, you can enable/disable the mod for yourself with /latrails on or /latrails off.
-For admin users: you can do the same globally with /latrails on global or /latrails off global, reload the active config file with /latrails reload, or restore the default config file with /latrails defaultconfig
+#### What if I don't like the path_block?
+The default configuration does not use the path_block, because it can stop boat movement, so some people may prefer not to use it. Also, if a path block is created under a door, the door will pop off.  If you'd like path blocks anyway, you may edit the config, or just create them with a shovel.  If you enable it, remember to put your doors and torches on blocks that won't ever convert to path blocks.
 
 #### Where is the config file?
 The default config is written out when you first load the mod, or if you delete or empty the existing config. The configuration file is located in your minecraft folder at .minecraft/config/livingadventuretrails.properties
 
 #### How does the config file work?
 The configuration file contains useful comments (beginning with a #) to help you make changes.
-
-The tool line defines the tool(s), when carried in either hand, that switches to the tool-specific divisors.  You can use this to increase the rate of pathing.
-````
-tool = wooden_shovel; stone_shovel
-````
-
-The leaftool line defines the tool(s) required to auto-break leaves while on horseback
-````
-leaftool = diamond_hoe; netherite_hoe
-````
-
-The divisor lines at the top control the overall speed of block conversion.  HIGHER divisors will slow down the conversion.  LOWER divisors will speed it up.  Set a divisor to 0 to turn it off.
+The divisor lines at the top control the overall speed of block conversion.  HIGHER divisors will slow down the conversion.  LOWER divisors will speed it up.
 
 ````
 divisor,step = 4000
-divisor,steptool = 2000
+divisor,steptool = 2500
 ````
 
-````
-divisor,jump = 3000
-divisor,jumptool = 2000
-````
 
 ````
-divisor,horse = 2500
-divisor,horsetool = 1500
+divisor,jump = 1000
+divisor,jumptool = 500
 ````
 
-I recommend not lowering any divisor below the total of any 'autotrail' or 'fragile' line, as this will result in a 100% conversion rate, and look kind of terrible.
+
+````
+divisor,horse = 2000
+divisor,horsetool = 500
+````
+
+I recommend not lowering any divisor below the total of any 'autotrail' or 'fragile' line, as this will result in a 100% conversion rate, and look a bit terrible.
 
 The 'autotrail' lines in the config look like this:
 
@@ -85,7 +74,7 @@ The 'autotrail' lines in the config look like this:
 autotrail,overworld,mud = (smooth_basalt,50; packed_mud,10)
 ````
 
-In this example, in the overworld, mud will be converted into either smooth_basalt, or packed mud.  There's a 60 (50+10) in 4000 (the divisor) chance when you step on a mud block that it will be converted.  smooth_basalt is 5x more likely than packed_mud.
+In this example, in the overworld, mud will be converted into either smooth_basalt, or packed mud.  There's a 60 (50+10) in 4000 (the divisor) chance when you step on a mud block that it will be converted.  smooth_basalt is 5x more likely than packed_mud. If carrying the tool (shovel), the chance will be 60 in 2500.  If riding a horse with the tool, the chance is 60 in 500.
 
 The 'fragile' lines work identically, except that they break the block, and drop loot.
 
@@ -100,11 +89,11 @@ Yes, If you don't like a certain set of options in the config, simply comment th
 Again, if you want to restore the configuration to the defaults, or get the new default configs, if you get a new version of the mod, just delete or empty the config file, and restart the game.
 
 #### How does it handle plants that you can walk through?
-Almost all growing plants are considered 'fragile', and have a decent chance of breaking if you walk through them. You can trample flowers, grass, saplings, vines, etc. Doing this will drop their loot as items, the same way as breaking them with an open hand.  If you don't like certain plants breaking, comment the lines out in the config file.  By default, no crops are breakable in this way.
+Almost all growing plants are considered 'fragile', and have a decent chance of breaking if you walk through them. You can trample flowers, grass, saplings, vines, etc. Doing this will drop their loot as items, the same way as breaking them with an open hand.  If you don't like certain plants breaking, comment the lines out in the config file.
 
 #### Can you cheat with it?
 Yes, of course.  It's fully configurable.  If you want netherite blocks by jumping on pink glazed terracotta, that's entirely up to you.
-On the other hand, if you wanted to record a "Minecraft, but jumping on podzol is OP" video, this is potentially the mod for you! xD
+On the other hand, if you wanted to record a "Minecraft, but jumping on podzol is OP" video, this is the mod for you! xD
 
 #### Will it work with other modded blocks?
 Probably. Use F3 to determine the block id, and enter the MODNAME:BLOCKNAME into the config. You do NOT need to prefix vanilla minecraft blocks with "minecraft:" in the config, but you will for modded blocks.  I have not yet tested this feature, but I don't see why it shouldn't work.
